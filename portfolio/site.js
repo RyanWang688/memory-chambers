@@ -85,6 +85,15 @@
     </div>`).join('') +
     `<div class="legend"><span><i style="background:#2f6f5c"></i>met 4.0 target</span><span><i style="background:${MUST}"></i>below target</span><span><i style="border-left:2px dashed ${RED};width:0;border-radius:0"></i>target 4.0 / 5</span></div>`;
 
+  /* ---- hero: pick a door, the figure changes size ---- */
+  const heroMe = $('heroMe');
+  document.querySelectorAll('.door-pick .seg button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.door-pick .seg button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+    heroMe.dataset.size = b.dataset.size;
+    $('doorRead').textContent = b.dataset.read;
+  }));
+
   /* ---- lightbox for sketches and references ---- */
   const lb = $('lightbox'), lbImg = $('lightboxImg');
   document.querySelectorAll('.zoomable').forEach(b => b.addEventListener('click', () => {
