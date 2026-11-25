@@ -46,16 +46,44 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav .btn{font-size:18px;padding:7px 16px 6px}
 @media (max-width:760px){.nav ul{display:none}.nav .btn{margin-left:auto}}
 
-/* ---------- hero: the real title screen ---------- */
-.hero{position:relative;background:#081214}
-.hero .shot{position:relative;width:min(100%,calc((100vh - 58px) * 16 / 9));margin:0 auto;aspect-ratio:16/9;overflow:hidden}
-.hero .shot img{width:100%;height:100%;object-fit:cover}
-.hero .start-hit{position:absolute;left:60.15%;top:62.9%;width:20.25%;height:8.5%;border-radius:10px;cursor:pointer;background:transparent;border:0}
-.hero .start-hit::after{content:"";position:absolute;inset:-6px;border-radius:14px;border:2px solid var(--hint);opacity:0;transition:opacity .2s}
-.hero .start-hit:hover::after,.hero .start-hit:focus-visible::after{opacity:1}
-@media (prefers-reduced-motion:no-preference){.hero .start-hit::after{animation:pulse 2.6s ease-in-out 1.2s 3}}
-@keyframes pulse{0%,100%{opacity:0}50%{opacity:.9}}
-.hero .tag{position:absolute;left:3%;bottom:4%;font-family:var(--f-letter);font-size:clamp(14px,1.6vw,22px);color:var(--wall);opacity:.85}
+/* ---------- hero: title + Room Life as a floating diorama ---------- */
+.hero{position:relative;background:#030505;overflow:hidden;border-bottom:1px solid var(--night-line)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(1.2px 1.2px at 12% 22%,#cfe 50%,transparent 51%),radial-gradient(1px 1px at 28% 68%,#cfe 50%,transparent 51%),
+  radial-gradient(1px 1px at 41% 12%,#cfe 50%,transparent 51%),radial-gradient(1.2px 1.2px at 7% 84%,#cfe 50%,transparent 51%),
+  radial-gradient(1px 1px at 33% 40%,#cfe 50%,transparent 51%),radial-gradient(1px 1px at 19% 52%,#cfe 50%,transparent 51%);opacity:.5;pointer-events:none}
+.hero-in{position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;gap:24px;
+  padding-left:var(--gut);padding-right:var(--gutR);padding-block:56px 40px;min-height:min(820px,calc(100vh - 58px))}
+.hero-copy{position:relative;z-index:2;display:grid;gap:20px;align-content:center}
+.hero .eyebrow{color:var(--mint)}
+.hero h1{font-size:clamp(56px,8.4vw,128px);font-weight:800;line-height:.86;letter-spacing:-.045em;color:var(--wall)}
+.hero-sub{font-family:var(--f-letter);font-size:clamp(22px,2.2vw,30px);line-height:1.2;color:var(--wall);max-width:22ch}
+.hero-role{font-size:15px;line-height:1.55;color:#a9bab6;border-left:3px solid var(--hint);padding-left:14px}
+.hero-role b{color:var(--hint);font-weight:700}
+.hero-role span{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:#7f9692}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.diorama{position:relative;margin:0 -8% 0 2%;aspect-ratio:16/9}
+.diorama img{width:100%;height:100%;object-fit:cover;object-position:52% 50%;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 30%,#000 82%,transparent 100%),linear-gradient(90deg,transparent 0,#000 16%,#000 86%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,transparent 0,#000 30%,#000 82%,transparent 100%),linear-gradient(90deg,transparent 0,#000 16%,#000 86%,transparent 100%);
+  mask-composite:intersect}
+.beam{position:absolute;left:18%;top:-40%;width:60%;height:150%;background:radial-gradient(ellipse 30% 60% at 50% 20%,rgba(214,240,190,.16),rgba(214,240,190,0) 70%);
+  pointer-events:none;z-index:1;mix-blend-mode:screen}
+.diorama figcaption{position:absolute;left:16%;bottom:-6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6f8783}
+.pin{position:absolute;z-index:3;transform:translate(-50%,-50%);width:34px;height:34px;padding:0;border:2px solid var(--ink);border-radius:50%;background:var(--mustard);
+  font-family:var(--f-letter);font-size:20px;line-height:1;color:var(--ink);cursor:pointer;box-shadow:0 0 0 4px rgba(242,183,5,.25)}
+@media (prefers-reduced-motion:no-preference){.pin{animation:ping 2.4s ease-out infinite}.pin:nth-of-type(2){animation-delay:.8s}.pin:nth-of-type(3){animation-delay:1.6s}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(242,183,5,.55)}70%,100%{box-shadow:0 0 0 14px rgba(242,183,5,0)}}
+.pin em{position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%);width:max-content;max-width:220px;font-style:normal;font-family:var(--f-letter);font-size:17px;line-height:1.2;
+  background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:6px 10px;opacity:0;pointer-events:none;transition:opacity .15s}
+.pin:hover em,.pin:focus-visible em{opacity:1}
+.pin:nth-of-type(3) em{left:auto;right:-6px;transform:none}
+@media (max-width:900px){
+  .hero-in{grid-template-columns:minmax(0,1fr);min-height:0;padding-block:28px 40px;gap:8px}
+  .diorama{order:-1;margin:0 calc(-1 * var(--gutR)) 20px calc(-1 * var(--gut))}
+  .pin{width:28px;height:28px;font-size:17px}
+}
 .pitch{background:var(--night);border-bottom:1px solid var(--night-line)}
 .pitch .inner{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;padding-block:56px 64px}
 .pitch .lead{font-size:clamp(20px,2.2vw,26px);line-height:1.45;font-family:var(--f-display);font-weight:500;letter-spacing:-.01em}
