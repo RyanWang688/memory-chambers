@@ -6,7 +6,11 @@ You play a man who is depressed and lost, trying to find a way out of two interc
 
 **Team:** Joly Lin, Yao Chen, Yue Wang
 
-## Play
+## Play online
+
+**https://ryanwang688.github.io/memory-chambers/**
+
+## Play locally
 
 Open `index.html` through a static web server (opening the file directly will not work), e.g.
 
