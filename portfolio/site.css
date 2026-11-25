@@ -105,6 +105,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .strip .p2 img{transform:scale(2.3);transform-origin:49% 56%}
 .strip .p3 img{transform:scale(2.6);transform-origin:77% 16%}
 @media (max-width:760px){.strip{grid-template-columns:1fr}.strip .big{grid-row:auto}}
+/* Outworld + Room Work galleries */
+.world{margin-top:96px}
+.seq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.seq .panel{aspect-ratio:5/4;background:#06070c}
+.seq .panel img{object-fit:cover}
+.work-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.work-grid .panel{background:#000}
+.w-street{grid-column:span 4;aspect-ratio:2/1}
+.w-large{grid-column:span 2}
+.w-pair{grid-column:span 3;aspect-ratio:1.1/1}
+.w-exit{grid-column:span 6;aspect-ratio:2.4/1}
+.w-exit img{object-position:50% 30%}
+@media (max-width:900px){.seq{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.work-grid{grid-template-columns:minmax(0,1fr)}.w-street,.w-large,.w-pair,.w-exit{grid-column:auto}.w-large{aspect-ratio:1.1/1}.w-exit{aspect-ratio:16/10}}
+@media (max-width:520px){.seq{grid-template-columns:minmax(0,1fr)}}
 .quotes{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:28px;font-family:var(--f-letter);font-size:21px;color:var(--ink-2)}
 .quotes span::before{content:"“";color:var(--red)}
 .quotes span::after{content:"”";color:var(--red)}
