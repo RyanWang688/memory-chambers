@@ -213,14 +213,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:900px){.p2b-row{grid-template-columns:minmax(0,1fr)}}
 
 /* style references in the look section */
-.refs{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr) 40px minmax(0,1.3fr);gap:14px;align-items:center;margin-bottom:56px}
+.refs{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.75fr) minmax(0,1.1fr);gap:18px;align-items:start;margin-bottom:56px}
+.ref{margin:0;display:grid;gap:10px;min-width:0}
 .refs .zoomable{border-color:#000}
-.refs-arrow{font-family:var(--f-letter);font-size:40px;color:var(--hint);text-align:center}
+.ref .zoomable{height:clamp(220px,24vw,290px);overflow:hidden;background:#fff}
+.ref .zoomable img{width:100%;height:100%;object-fit:cover}
+.ref:nth-child(2) .zoomable img{object-position:50% 45%}
+.ref:nth-child(3) .zoomable img{object-fit:contain;padding:6px}
+.ref figcaption{font-size:14px;line-height:1.5;color:#b7c3bf}
+.ref figcaption b{display:block;font-family:var(--f-display);font-size:17px;color:var(--wall);margin-bottom:2px}
+.ref figcaption small{display:block;margin-top:6px;font-family:var(--f-mono);font-size:11px;color:#7f9692}
+.refs-arrow{grid-column:1/-1;font-family:var(--f-letter);font-size:40px;line-height:1;color:var(--hint);text-align:center}
+.refs-result{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
 .refs-out{border:2px solid #000}
-.refs-out img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.refs-cap{grid-column:1/-1;font-size:15px;color:#b7c3bf;max-width:70ch}
+.refs-out img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.refs-cap{font-size:15px;color:#b7c3bf;max-width:46ch}
 .refs-cap b{color:var(--wall)}
-@media (max-width:900px){.refs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.refs-arrow{display:none}.refs-out{grid-column:1/-1}}
+@media (max-width:900px){.refs{grid-template-columns:minmax(0,1fr)}.ref .zoomable{height:auto;aspect-ratio:4/3}.refs-result{grid-template-columns:minmax(0,1fr)}}
 
 /* playtest */
 .test{margin-top:72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px}

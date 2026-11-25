@@ -125,11 +125,23 @@
       <p>I owned the art direction, 3D models, music and the main flat-colour shader, and worked with Joly Lin on the outline pass that completes the Moebius look. Without these passes the rooms read as clean 3D. With them they read as a drawing you can walk into.</p>
     </div>
     <div class="refs">
-      <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-diorama.jpg"><img src="portfolio/img/concept/ref-diorama.jpg" alt="Style reference: an isometric cut-away diorama of a seaside terrace, drawn with ink outlines and flat colour." loading="lazy"></button>
-      <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-tiles.jpg"><img src="portfolio/img/concept/ref-tiles.jpg" alt="Style reference: isometric landscape tiles with cut soil edges, ink outlines and flat colour." loading="lazy"></button>
-      <div class="refs-arrow" aria-hidden="true">→</div>
-      <div class="refs-out"><img src="portfolio/img/06-life-room.jpg" alt="Room Life in game, matching the references' cut-away and ink style" loading="lazy"></div>
-      <p class="refs-cap"><b>Target look.</b> Cut-away isometric blocks, ink outlines, flat colour with light shading. The references set the bar; the shaders below are how the Unity scene gets there.</p>
+      <figure class="ref">
+        <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-moebius-edena.jpg"><img src="portfolio/img/concept/ref-moebius-edena.jpg" alt="Moebius illustration from The Art of Edena: an orange adobe house seen from above, a figure and a pack animal beside it, drawn with clean ink lines and flat colour." loading="lazy"></button>
+        <figcaption><b>Colour rule</b>Objects are simple: one flat colour, or an unusual gradient. This became the shader's flat base colour plus height gradient.<small>Moebius, <i>The Art of Edena</i>, Dark Horse Books</small></figcaption>
+      </figure>
+      <figure class="ref">
+        <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-diorama.jpg"><img src="portfolio/img/concept/ref-diorama.jpg" alt="Style reference: an isometric cut-away diorama of a seaside terrace, drawn with ink outlines and flat colour." loading="lazy"></button>
+        <figcaption><b>Cut-away block</b>One space sliced out of the world, grey section walls, tiny people for scale.</figcaption>
+      </figure>
+      <figure class="ref">
+        <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-tiles.jpg"><img src="portfolio/img/concept/ref-tiles.jpg" alt="Style reference: isometric landscape tiles with cut soil edges, ink outlines and flat colour." loading="lazy"></button>
+        <figcaption><b>Modular cubes</b>Separate tiles that read as one map. The model for rooms that move and lock together.</figcaption>
+      </figure>
+      <div class="refs-arrow" aria-hidden="true">↓</div>
+      <div class="refs-result">
+        <div class="refs-out"><img src="portfolio/img/06-life-room.jpg" alt="Room Life in game, matching the references' cut-away and ink style" loading="lazy"></div>
+        <p class="refs-cap"><b>In game.</b> Room Life as a cut-away cube with ink outlines and flat colour. The references set the bar; the shaders below are how the Unity scene gets there.</p>
+      </div>
     </div>
     <div class="passes">
       <div class="pass">
