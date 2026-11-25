@@ -35,7 +35,8 @@ p{margin:0}
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(14,27,30,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--night-line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--night)}
 .nav .inner{display:flex;align-items:center;gap:20px;height:58px}
-.nav .who{font-family:var(--f-display);font-weight:800;font-size:16px;text-decoration:none;white-space:nowrap}
+.nav .who{font-family:var(--f-display);font-weight:800;font-size:16px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+.nav .mark{width:24px;height:24px;display:block}
 .nav .who span{color:var(--mint)}
 .nav ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0;font-size:14px}
 .nav ul a{text-decoration:none;opacity:.78}
