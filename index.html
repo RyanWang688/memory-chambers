@@ -124,6 +124,13 @@
       <div><p class="eyebrow">03 · My role · Visual &amp; audio</p><h2 style="margin-top:12px">Making a Unity scene look hand-inked.</h2></div>
       <p>I owned the art direction, 3D models, music and the main flat-colour shader, and worked with Joly Lin on the outline pass that completes the Moebius look. Without these passes the rooms read as clean 3D. With them they read as a drawing you can walk into.</p>
     </div>
+    <div class="refs">
+      <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-diorama.jpg"><img src="portfolio/img/concept/ref-diorama.jpg" alt="Style reference: an isometric cut-away diorama of a seaside terrace, drawn with ink outlines and flat colour." loading="lazy"></button>
+      <button class="zoomable" type="button" data-full="portfolio/img/concept/ref-tiles.jpg"><img src="portfolio/img/concept/ref-tiles.jpg" alt="Style reference: isometric landscape tiles with cut soil edges, ink outlines and flat colour." loading="lazy"></button>
+      <div class="refs-arrow" aria-hidden="true">→</div>
+      <div class="refs-out"><img src="portfolio/img/06-life-room.jpg" alt="Room Life in game, matching the references' cut-away and ink style" loading="lazy"></div>
+      <p class="refs-cap"><b>Target look.</b> Cut-away isometric blocks, ink outlines, flat colour with light shading. The references set the bar; the shaders below are how the Unity scene gets there.</p>
+    </div>
     <div class="passes">
       <div class="pass">
         <div class="zoom z1" role="img" aria-label="Detail of the red desk showing flat colour with subtle normal shading"><span>Pass 1 · flat colour</span></div>
@@ -189,7 +196,8 @@
           <p>After prototyping as a team we judged seven rooms impossible in the time we had. The redesign kept the idea of travelling back and forth between rooms but rebuilt the story around Life, Work and Childhood inside one Outworld. Childhood was cut during implementation.</p>
           <ul><li>Story shifts from "body fragments" to "find the dream within"</li><li>Lever replaces pushing Room Life by hand</li><li class="cut">Room Childhood</li></ul>
         </div>
-        <figure><div class="scope" id="scope3"></div><figcaption>7 → 3 → 2 rooms. The back-and-forth structure survives every cut.</figcaption></figure>
+        <figure><button class="zoomable" type="button" data-full="portfolio/img/concept/sketch-overview.jpg"><img src="portfolio/img/concept/sketch-overview.jpg" alt="Hand-drawn level overview: theme 'Escape from stress, find peace inside', the Life, Work and Childhood cubes inside one large room, and the door symbols for bigger, no change and smaller." loading="lazy"></button><figcaption>v2 overview sketch: three memory cubes inside one Outworld, and the door symbols for grow / no change / shrink.</figcaption>
+        <div class="scope" id="scope3" style="margin-top:18px"></div><figcaption>7 → 3 → 2 rooms. The back-and-forth structure survives every cut.</figcaption></figure>
       </div>
 
       <div class="ver">
@@ -200,6 +208,28 @@
           <ul><li>Moebius shaders + dust particles</li><li>Story subtitles at start and end</li><li class="cut">Sunrise / sunset in Room Work</li></ul>
         </div>
         <figure><img src="portfolio/img/06-life-room.jpg" alt="Final Room Life in the shipped build" loading="lazy" style="aspect-ratio:16/9;object-fit:cover"><figcaption>Room Life in the shipped v3 build.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="paper2build">
+      <p class="eyebrow">From sketch to build · v2 level sheets, 28 Sep 2025</p>
+      <h3 class="p2b-title">Every room was drawn as a puzzle sheet first</h3>
+      <div class="p2b">
+        <div class="p2b-row">
+          <button class="zoomable" type="button" data-full="portfolio/img/concept/sketch-life.jpg"><img src="portfolio/img/concept/sketch-life.jpg" alt="Room Life level sheet: isometric bedroom and four stage diagrams in red, green and blue." loading="lazy"></button>
+          <div class="p2b-note"><b>Life</b><span class="theme">expectation · future dream · study life</span><p>Four stages drawn over the same bedroom in different ink colours: leave the room, re-enter small, push the book, move the room cube into place.</p><span class="tag ship">Shipped</span></div>
+          <div class="p2b-shot"><img src="portfolio/img/06-life-room.jpg" alt="Room Life as built in Unity" loading="lazy"><span>In game</span></div>
+        </div>
+        <div class="p2b-row">
+          <button class="zoomable" type="button" data-full="portfolio/img/concept/sketch-work.jpg"><img src="portfolio/img/concept/sketch-work.jpg" alt="Room Work level sheet: grid floor with blueprint sites, a time building with sun and moon doors, and four building stages." loading="lazy"></button>
+          <div class="p2b-note"><b>Work</b><span class="theme">depression · stress · need for salvation</span><p>Blueprint sites, the four construction stages, and the time building whose sun and moon doors push time forward or back.</p><span class="tag ship">Shipped</span></div>
+          <button class="zoomable" type="button" data-full="portfolio/img/concept/sketch-work-2.jpg"><img src="portfolio/img/concept/sketch-work-2.jpg" alt="Room Work progression sheet: solution grid and three stage drawings." loading="lazy"></button>
+        </div>
+        <div class="p2b-row cut">
+          <button class="zoomable" type="button" data-full="portfolio/img/concept/sketch-childhood.jpg"><img src="portfolio/img/concept/sketch-childhood.jpg" alt="Room Childhood level sheet: lock parts, floating bricks and three doors in a grass room." loading="lazy"></button>
+          <div class="p2b-note"><b>Childhood</b><span class="theme">reclaim his dream as a farmer</span><p>He finds a childhood toy, rebuilds a lock from floating bricks, and the ending cutscene shows him leaving the big job to farm. Cut for time in v3.</p><span class="tag cut">Cut</span></div>
+          <button class="zoomable" type="button" data-full="portfolio/img/concept/sketch-childhood-2.jpg"><img src="portfolio/img/concept/sketch-childhood-2.jpg" alt="Room Childhood stages 1 to 5 and the ending cutscene." loading="lazy"></button>
+        </div>
       </div>
     </div>
 
@@ -274,6 +304,11 @@
     <span>Player animation clips from Mixamo · built for COMP30019, University of Melbourne · for educational use</span>
   </div>
 </footer>
+
+<dialog id="lightbox" aria-label="Enlarged image">
+  <img id="lightboxImg" src="" alt="">
+  <button type="button" id="lightboxClose" aria-label="Close">×</button>
+</dialog>
 
 <script src="portfolio/site.js"></script>
 </body>

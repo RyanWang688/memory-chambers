@@ -85,6 +85,16 @@
     </div>`).join('') +
     `<div class="legend"><span><i style="background:#2f6f5c"></i>met 4.0 target</span><span><i style="background:${MUST}"></i>below target</span><span><i style="border-left:2px dashed ${RED};width:0;border-radius:0"></i>target 4.0 / 5</span></div>`;
 
+  /* ---- lightbox for sketches and references ---- */
+  const lb = $('lightbox'), lbImg = $('lightboxImg');
+  document.querySelectorAll('.zoomable').forEach(b => b.addEventListener('click', () => {
+    const img = b.querySelector('img');
+    lbImg.src = b.dataset.full; lbImg.alt = img ? img.alt : '';
+    if (lb.showModal) lb.showModal(); else window.open(b.dataset.full, '_blank');
+  }));
+  $('lightboxClose').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+
   /* ---- load the game on demand ---- */
   $('startGame').addEventListener('click', () => {
     const f = document.createElement('iframe');
