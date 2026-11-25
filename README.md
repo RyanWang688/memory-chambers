@@ -6,19 +6,28 @@ You play a man who is depressed and lost, trying to find a way out of two interc
 
 **Team:** Joly Lin, Yao Chen, Yue Wang
 
-## Play online
+## Portfolio and play online
 
-**https://ryanwang688.github.io/memory-chambers/**
+- Case study (design, iteration, playtest, playable build): **https://ryanwang688.github.io/memory-chambers/**
+- Game only: **https://ryanwang688.github.io/memory-chambers/play/**
 
-## Play locally
+## Layout
 
-Open `index.html` through a static web server (opening the file directly will not work), e.g.
+| Path | What it is |
+| --- | --- |
+| `index.html`, `portfolio/` | Portfolio case study page, styles, script and in-game screenshots |
+| `play/index.html` | WebGL player page (embedded in the portfolio, also works on its own) |
+| `Build/` | Unity WebGL build |
+
+## Run locally
+
+Serve the folder through a static web server (opening the file directly will not work), e.g.
 
 ```
 python -m http.server
 ```
 
-then visit http://localhost:8000.
+then visit http://localhost:8000 for the portfolio or http://localhost:8000/play/ for the game.
 
 ## Tech
 

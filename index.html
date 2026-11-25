@@ -2,49 +2,265 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Memory Chambers</title>
-<style>
-  html,body{margin:0;height:100%;background:#0b0d10;color:#ddd;font-family:system-ui,sans-serif}
-  #wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  #unity-container{position:relative;width:100%;height:100%;max-width:calc(100vh*16/9);max-height:calc(100vw*9/16);margin:auto}
-  #unity-canvas{width:100%;height:100%;background:#231F20;display:block}
-  #bar{position:absolute;left:10%;right:10%;bottom:12%;height:8px;background:#333;border-radius:4px;overflow:hidden}
-  #fill{height:100%;width:0;background:#f5b400;transition:width .2s}
-  #msg{position:absolute;left:0;right:0;bottom:16%;text-align:center;font-size:14px}
-  #fs{position:absolute;right:12px;bottom:12px;z-index:2;padding:6px 12px;border:0;border-radius:6px;background:#ffffff22;color:#fff;cursor:pointer}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Memory Chambers · Yue Wang</title>
+<meta name="description" content="Memory Chambers — a narrative scale-shifting puzzle game in Unity. Case study and playable build by Yue Wang (visual art, audio, 3D models, Moebius shaders).">
+<meta property="og:title" content="Memory Chambers · Yue Wang">
+<meta property="og:description" content="A narrative puzzle game about a man trapped in the rooms of his own memory. Case study + play in browser.">
+<meta property="og:image" content="portfolio/img/01-title.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Patrick+Hand&display=swap">
+<link rel="stylesheet" href="portfolio/site.css">
 </head>
 <body>
-<div id="wrap">
-  <div id="unity-container">
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <div id="msg">Loading Memory Chambers…</div>
-    <div id="bar"><div id="fill"></div></div>
-    <button id="fs">Fullscreen</button>
+
+<nav class="nav" aria-label="Main">
+  <div class="inner">
+    <a class="who" href="#top">Yue Wang <span>/</span> Memory Chambers</a>
+    <ul>
+      <li><a href="#life">The rooms</a></li>
+      <li><a href="#scale">Mechanic</a></li>
+      <li><a href="#look">My role</a></li>
+      <li><a href="#process">Iteration</a></li>
+    </ul>
+    <a class="btn" href="#play">Play</a>
   </div>
-</div>
-<script src="Build/WebGL.loader.js"></script>
-<script>
-  const canvas = document.getElementById("unity-canvas");
-  const config = {
-    dataUrl: "Build/WebGL.data.unityweb",
-    frameworkUrl: "Build/WebGL.framework.js.unityweb",
-    codeUrl: "Build/WebGL.wasm.unityweb",
-    streamingAssetsUrl: "StreamingAssets",
-    companyName: "Spirit",
-    productName: "Memory Chambers",
-    productVersion: "1.0",
-  };
-  createUnityInstance(canvas, config, p => {
-    document.getElementById("fill").style.width = (p * 100) + "%";
-  }).then(inst => {
-    document.getElementById("bar").style.display = "none";
-    document.getElementById("msg").style.display = "none";
-    document.getElementById("fs").onclick = () => inst.SetFullscreen(1);
-  }).catch(e => {
-    document.getElementById("msg").textContent = "Failed to load: " + e;
-  });
-</script>
+</nav>
+
+<header class="hero" id="top">
+  <div class="shot">
+    <img src="portfolio/img/01-title.jpg" alt="Memory Chambers title screen: a man sits slumped on a teal cube under a spotlight, a night city skyline behind him, and a mint Start button.">
+    <a class="start-hit" href="#play" aria-label="Start — jump to the playable build"></a>
+  </div>
+</header>
+
+<section class="pitch">
+  <div class="inner">
+    <div>
+      <p class="eyebrow" style="color:#8aa4a0">Narrative puzzle · Isometric · Unity 6 URP · WebGL</p>
+      <p class="lead" style="margin-top:14px">A depressed, lost man wakes inside two rooms built from his own memory, <em>Life</em> and <em>Work</em>. The only way out is to change size: walk out of a door and come back in smaller, push one book until it becomes a bridge, grow big enough to move whole buildings.</p>
+      <div class="ctas">
+        <a class="btn" href="#play">▶ Play in browser</a>
+        <a class="btn ghost" href="https://youtu.be/iD46ilGyk7w" target="_blank" rel="noopener">Watch trailer</a>
+        <a class="btn ghost" href="#process">See the iteration</a>
+      </div>
+    </div>
+    <dl class="facts">
+      <div class="me"><dt>My role</dt><dd>Visual art, audio, 3D models, main shaders</dd></div>
+      <div><dt>Team</dt><dd>Spirit · 3 people</dd></div>
+      <div><dt>Timeline</dt><dd>15 Sep – 4 Nov 2025 · 4 GDD versions</dd></div>
+      <div><dt>Playtest</dt><dd>10 players · think-aloud + 10-item survey</dd></div>
+      <div><dt>Tools</dt><dd>Unity 6000.1 · URP 17.1 · HLSL · FMOD · Blender</dd></div>
+      <div><dt>Context</dt><dd>COMP30019 Graphics &amp; Interaction, University of Melbourne</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================= LIFE ================= -->
+<section class="life" id="life">
+  <div class="inner">
+    <div class="sec-head">
+      <div><p class="eyebrow">01 · Room Life</p><h2 style="margin-top:12px">A bedroom that remembers too much.</h2></div>
+      <p>Room Life is the protagonist's student years: a narrow bed, a lacquered desk, steel shelving stacked with books he never finished. Every object here is drawn flat, outlined in ink and lit by one hard window, so the room reads like a page from a comic he's stuck inside.</p>
+    </div>
+    <div class="strip">
+      <div class="panel big"><img src="portfolio/img/06-life-room.jpg" alt="Isometric cut-away of Room Life: bed with red pillow, red desk, tall brown shelves, yellow drawers, and the small protagonist standing in the middle." loading="lazy"><span class="caption">Room Life, in-game. Camera fixed isometric.</span></div>
+      <div class="panel p2"><img src="portfolio/img/04-life-shell.jpg" alt="Close crop of the protagonist beside the desk with the opening subtitle." loading="lazy"><span class="sub">"It feels like I'm trapped inside my shell"</span></div>
+      <div class="panel p3"><img src="portfolio/img/03-life-intro.jpg" alt="Close crop of the shelves with the yellow book that becomes a bridge." loading="lazy"><span class="caption">The yellow book. Push it and it falls into a bridge.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCALE ================= -->
+<section class="scale" id="scale">
+  <div class="inner">
+    <div class="sec-head">
+      <div><p class="eyebrow">02 · Core mechanic</p><h2 style="margin-top:12px">Doors don't take you somewhere. They change your size.</h2></div>
+      <p>Each room is a cube. Leaving through one door and re-entering through another rescales the player, and the same furniture turns into a cliff, a stair or a toy. Strength scales too: only a large player can push a building.</p>
+    </div>
+    <div class="sizes" id="sizes"></div>
+    <div class="route">
+      <div>
+        <h3>Room Life route</h3>
+        <ol>
+          <li><div>Wake up large. Exit through the main door and drop back in through the skylight. <span class="chip xs">XS</span></div></li>
+          <li><div>Climb the ladder, reach the shelf and <b>push the yellow book</b>. It falls and forms a bridge.</div></li>
+          <li><div>Exit, re-enter through the triangle-marked door. <span class="chip s">S</span> Walk the book bridge to the right door.</div></li>
+          <li><div>Exit to the Outworld grown. <span class="chip l">L</span> <b>Pull the lever</b>: Room Life slides next to Room Work.</div></li>
+        </ol>
+      </div>
+      <div>
+        <h3>Room Work route</h3>
+        <ol>
+          <li><div>Climb into the second box. The left and right <b>time doors</b> move time backward and forward. <span class="chip s">S</span></div></li>
+          <li><div>Go forward: buildings rise through four construction stages and reveal their tops.</div></li>
+          <li><div>Go back: hidden <b>blueprint bricks</b> appear on the ground, one per building silhouette.</div></li>
+          <li><div>Re-enter from the right door as <span class="chip l">L</span> and push each building onto its matching brick. The rooms lock into one cuboid and the final door opens.</div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MY ROLE / LOOK ================= -->
+<section class="look" id="look">
+  <div class="inner">
+    <div class="sec-head">
+      <div><p class="eyebrow">03 · My role · Visual &amp; audio</p><h2 style="margin-top:12px">Making a Unity scene look hand-inked.</h2></div>
+      <p>I owned the art direction, 3D models, music and the main flat-colour shader, and worked with Joly Lin on the outline pass that completes the Moebius look. Without these passes the rooms read as clean 3D. With them they read as a drawing you can walk into.</p>
+    </div>
+    <div class="passes">
+      <div class="pass">
+        <div class="zoom z1" role="img" aria-label="Detail of the red desk showing flat colour with subtle normal shading"><span>Pass 1 · flat colour</span></div>
+        <h3>Flat Color With Normal Detail</h3>
+        <p>Custom vert/frag shader on most props. Colour stays flat like an illustration; the normal map only nudges shading, plus a world-height gradient, a stylised highlight band and rim light. Triplanar / world-XZ mapping hides seams between modular pieces.</p>
+        <p><code>_GradientHeight · _SpecThreshold · _RimPower · _AlbedoUVMode</code></p>
+      </div>
+      <div class="pass">
+        <div class="zoom z2" role="img" aria-label="Detail of the shelving with dark ink outlines on every edge"><span>Pass 2 · Sobel outline</span></div>
+        <h3>Sobel Outline, full-screen <small style="font-family:var(--f-mono);font-size:11px;font-weight:400;color:#8aa4a0;letter-spacing:0">with Joly Lin</small></h3>
+        <p>A post-process pass reads Unity's depth and normal textures, runs a Sobel filter on both and blends the edges into ink lines. A second stencil pass keeps lines off the player model so the character stays readable.</p>
+        <p><code>_DepthScale · _NormalScale · _EdgeThreshold · _EdgeSoftness</code></p>
+      </div>
+      <div class="pass">
+        <div class="zoom z3" role="img" aria-label="Detail of the window light falling across the wall with drifting dust"><span>Pass 3 · light &amp; dust</span></div>
+        <h3>Window light, dust, sound</h3>
+        <p>One hard key light from the window and a slow dust particle system set the "forgotten room" mood. The score stays calm and gentle so a stuck player isn't punished by the music.</p>
+        <p><code>Particle System · FMOD · BGM per room</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="mine"><b>Yue Wang</b><span>Visual art, audio, 3D models, main shaders</span></div>
+      <div><b>Yao Chen</b><span>Level design, player control, programming</span></div>
+      <div><b>Joly Lin</b><span>Animation, outline shaders, UI, evaluation analysis</span></div>
+      <div><b>Shared</b><span>Game design, GDD, playtesting</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process" id="process">
+  <div class="inner">
+    <div class="sec-head">
+      <div><p class="eyebrow">04 · Iteration</p><h2 style="margin-top:12px">Seven rooms on paper. Two rooms that ship.</h2></div>
+      <p>We kept the GDD versioned section by section, so every cut and change has a date and a reason. Here is how the design moved over seven weeks.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="ver">
+        <div class="when"><b>v0</b>15 Sep 2025<br>Initial GDD</div>
+        <div>
+          <h3>Seven interconnected cubes</h3>
+          <p>A man has lost fragments of his body. Seven memory rooms (Centre, M1–M4, Junk, Exit) stack into one structure, and each room hides a body fragment that grants a new ability.</p>
+          <ul><li>Scale shifting through doors</li><li>Mini-games per room: racing, fishing, building</li><li class="cut">3D ↔ 2D shifting doors</li></ul>
+        </div>
+        <figure><div class="scope" id="scope7"></div><figcaption>The v0 world: seven rooms around a centre cube.</figcaption></figure>
+      </div>
+
+      <div class="ver">
+        <div class="when"><b>v1</b>20 Sep – 7 Oct<br>Paper prototypes</div>
+        <div>
+          <h3>Defining scale as a rule</h3>
+          <p>Paper drafts fixed the player sizes against a 1×1×1 room (L ¾, M ½, S ¼, XS ⅛), the click-to-move controls, the ten-step room-moving route and how the camera follows a scale change.</p>
+          <ul><li>Room cubes can be moved to open new paths</li><li>Carried objects rescale with the player</li></ul>
+        </div>
+        <figure><img src="portfolio/img/concept-v1-paper.jpg" alt="Paper prototype of level progression" loading="lazy" onerror="this.parentElement.remove()"><figcaption>Paper prototype, level progression.</figcaption></figure>
+      </div>
+
+      <div class="ver">
+        <div class="when"><b>v2</b>28 Sep – 3 Nov<br>Redesign</div>
+        <div>
+          <h3>Cut to three rooms, then two</h3>
+          <p>After prototyping as a team we judged seven rooms impossible in the time we had. The redesign kept the idea of travelling back and forth between rooms but rebuilt the story around Life, Work and Childhood inside one Outworld. Childhood was cut during implementation.</p>
+          <ul><li>Story shifts from "body fragments" to "find the dream within"</li><li>Lever replaces pushing Room Life by hand</li><li class="cut">Room Childhood</li></ul>
+        </div>
+        <figure><div class="scope" id="scope3"></div><figcaption>7 → 3 → 2 rooms. The back-and-forth structure survives every cut.</figcaption></figure>
+      </div>
+
+      <div class="ver">
+        <div class="when"><b>v3</b>4 Nov 2025<br>Final build</div>
+        <div>
+          <h3>Refined after playtesting</h3>
+          <p>All levels from the v2 prototype implemented, then tuned with what players told us: blueprint bricks moved closer to reduce difficulty, a guide scene added before play, hints and outlines added in-game.</p>
+          <ul><li>Moebius shaders + dust particles</li><li>Story subtitles at start and end</li><li class="cut">Sunrise / sunset in Room Work</li></ul>
+        </div>
+        <figure><img src="portfolio/img/06-life-room.jpg" alt="Final Room Life in the shipped build" loading="lazy" style="aspect-ratio:16/9;object-fit:cover"><figcaption>Room Life in the shipped v3 build.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="test">
+      <div>
+        <p class="eyebrow">Playtest · 20–27 Oct 2025</p>
+        <h3 style="margin-top:10px">What ten players told us</h3>
+        <div class="meta"><span>4 indie / cartoon-style fans</span><span>4 puzzle players</span><span>2 casual</span><span>think-aloud + walkthrough</span></div>
+        <ul class="finds">
+          <li><em>confused</em><span>Most players didn't know what to do when Room Life opened. There was little to interact with in the first minute.</span></li>
+          <li><em>excited</em><span>After 1–2 minutes, once they left through the first door and came back changed, 7 of 10 understood the door/size rule.</span></li>
+          <li><em>split</em><span>Re-entering Room Life at XS: half said "interesting", half said "confusing".</span></li>
+          <li><em>frustrated</em><span>6 players found XS movement tricky because only some surfaces were walkable; stair animations were unfinished.</span></li>
+          <li><em>difficult</em><span>Half found the large player hard to steer while pushing buildings in Room Work.</span></li>
+          <li><em>finished?</em><span>4 players took 10+ minutes, 3 took 8–10, 3 did not finish.</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Survey · average score out of 5 · hover a row for the feedback</p>
+        <div class="bars" id="bars" style="margin-top:14px"></div>
+      </div>
+    </div>
+
+    <div class="changes">
+      <div class="change"><span class="from">"where do I go?"</span><b>Guide scene before play</b><p>An intro page with the two controls (left click move, right click interact) and a story line.</p></div>
+      <div class="change"><span class="from">"I'm stuck"</span><b>"? hints" button</b><p>A step-by-step hint panel and short hint videos, always one click away.</p></div>
+      <div class="change"><span class="from">"what can I touch?"</span><b>Outline on interactables</b><p>Glow and outline highlights plus camera nudges toward the next object.</p></div>
+      <div class="change"><span class="from">"I fell into the books"</span><b>Walkable areas</b><p>Navigation limited to intended surfaces, consistent climb and walk animations.</p></div>
+    </div>
+
+    <div class="ui-iter">
+      <p class="eyebrow">UI iteration · title and HUD</p>
+      <div class="ui-row">
+        <div class="ui-step"><div class="thumb sketch"><img src="portfolio/img/ui-v0.jpg" alt="Paper sketch of the title screen" loading="lazy" onerror="this.replaceWith('Paper sketch: Start / Settings stacked')"></div><b>v0 · paper</b><p>Start and Settings stacked vertically. Settles structure only.</p></div>
+        <div class="ui-step"><div class="thumb sketch"><img src="portfolio/img/ui-v1.jpg" alt="First playable title screen" loading="lazy" onerror="this.replaceWith('Text title + small avatar button')"></div><b>v1 · minimal</b><p>Text title, small avatar button. Players missed the theme and the Start button.</p></div>
+        <div class="ui-step"><div class="thumb"><img src="portfolio/img/01-title.jpg" alt="Final themed title screen" loading="lazy"></div><b>v2 · themed</b><p>The slumped protagonist, Moebius palette, a big mint Start button. Players knew where to click.</p></div>
+        <div class="ui-step"><div class="thumb"><img src="portfolio/img/02-controls.jpg" alt="Controls screen: left click to move, right click to interact" loading="lazy"></div><b>v3 · in-game help</b><p>Controls card before play and a "? hints" icon for the puzzles.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLAY ================= -->
+<section class="play" id="play">
+  <div class="inner">
+    <div class="sec-head">
+      <div><p class="eyebrow">05 · Play it</p><h2 style="margin-top:12px">Try the rooms yourself.</h2></div>
+      <p>The full WebGL build runs right here. It's about 60&nbsp;MB, so it only loads when you press Start. Best on a desktop with a mouse.</p>
+    </div>
+    <div class="stage" id="stage">
+      <img src="portfolio/img/06-life-room.jpg" alt="" aria-hidden="true">
+      <div class="over">
+        <button class="btn" id="startGame" type="button">Start</button>
+        <small>Loads the game in this frame · <a href="play/" style="color:inherit">open full page instead</a></small>
+      </div>
+    </div>
+    <div class="play-notes">
+      <div><b>Controls</b><span class="kbd">Left click</span> move &nbsp; <span class="kbd">Right click</span> interact when close</div>
+      <div><b>Stuck?</b>Press <span class="kbd">? hints</span> in the top-left corner for the full route.</div>
+      <div><b>Platform</b>Built and tested on Windows. macOS browsers can show a pink rendering glitch, and a trackpad makes clicking harder.</div>
+    </div>
+    <div class="videos">
+      <a class="btn ghost" href="https://youtu.be/iD46ilGyk7w" target="_blank" rel="noopener">Trailer</a>
+      <a class="btn ghost" href="https://youtu.be/A_Q1B4HvlhQ" target="_blank" rel="noopener">Full playthrough</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span><b>Memory Chambers</b> · Team Spirit · Joly Lin, Yao Chen, Yue Wang · 2025</span>
+    <span>Player animation clips from Mixamo · built for COMP30019, University of Melbourne · for educational use</span>
+  </div>
+</footer>
+
+<script src="portfolio/site.js"></script>
 </body>
 </html>
